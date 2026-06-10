@@ -1,6 +1,3 @@
-"use client"
-
-import { useState } from "react"
 import Image from "next/image";
 
 
@@ -8,58 +5,27 @@ import Image from "next/image";
 
 
 export default function Home() {
-  const [task,setTask] = useState("")
-  const [tasks,setTasks]  = useState<string[]>([]);
-
-  const addTask =()=> {
-    if (task.trim()=== "")return
-    setTasks([...tasks, task])
-    setTask("")
-  }
-
-  const removeTask = (index: number) => {
-    const newTasks = tasks.filter((_, i) => i !== index)
-    setTasks(newTasks)
-  }
 
   return (
-     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold mb-6">To-Do App</h1>
+     <main  className="flex  min-h-screen  items-center justify-center bg-[#d5e1ef]  p-4 font-sans">
+      <div  className="bg-white rounded-xl  w-full  max-w-[320px]  p-7 text-center  shadow-lg transition-shadow  duration-300 hover:shadow-xl">
+        <div className=" relative   overflow-hidden  rounded-xl bg-[#2c7dfa] aspect-square w-full">
+         <Image
+            src="/image-qr-code.png"  alt="Frontend Mentor QR Code"  fill  className="object-cover p-4"  priority
+          />
+        </div>
+        <div className="px-4 py-4"  >
+          <h1 className="text-[20px] font-bold leading-tight text-[#1f3251]">
+            Improve your front-end skills by building projects
+          </h1>
+          <p className="mt-4 text-[15px] font-normal leading-relaxed text-[#7b879d]">
+            Scan the QR code to visit Frontend Mentor and take your coding skills to the next level
+          </p>
 
-      {/* إدخال مهمة جديدة */}
-      <div className="flex gap-2 mb-6">
-        <input
-          type="text"
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
-          placeholder="اكتب المهمة..."
-          className="border rounded px-3 py-2 w-64"
-        />
-        <button
-          onClick={addTask}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          إضافة
-        </button>
+
+        </div>
+
       </div>
-
-      {/* عرض المهام */}
-      <ul className="space-y-2 w-64">
-        {tasks.map((t, index) => (
-          <li
-            key={index}
-            className="flex justify-between items-center bg-white shadow p-2 rounded"
-          >
-            <span>{t}</span>
-            <button
-              onClick={() => removeTask(index)}
-              className="text-red-500 hover:text-red-700"
-            >
-              حذف
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
+     </main>
   );
 }
